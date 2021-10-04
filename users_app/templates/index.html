@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'styles.css' %}">
+   <title>ATHF users database</title>
+</head>
+<body>
+   <div id="container">
+      <div id="userlist">
+         <h1>All Users</h1>
+         <table>
+            <tr>
+               <th>ID</th>
+               <th>Name</th>
+               <th>E-mail</th>
+               <th>Age</th>
+            </tr>
+            {% for user in Userbase %}
+               <tr>
+                  <td>{{user.id}}</td>
+                  <td>{{user.first_name}} {{user.last_name}}</td>
+                  <td>{{user.email_address}}</td>
+                  <td>{{user.age}}</td>
+               </tr>
+            {% endfor %}}
+         </table>
+      </div>
+
+      <form action="/process" method = "POST">
+         {% csrf_token %}
+         <h1>Add a user</h1>
+         <input class="entry" type="text" name="fname" placeholder=" Please enter the first name">
+         <input class="entry" type="text" name="lname" placeholder=" Please enter the last name">
+         <input class="entry" type="text" name="email" placeholder=" Please enter the email address">
+         <input class="entry" type="text" name="age" placeholder=" Please enter the age">
+
+         <input type="Submit" value="Submit" id="button"> 
+      </form>
+   </div>
+</body>
+</html>
